@@ -1,0 +1,50 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % Use a recent compat version
+\begin{document}
+	
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=12cm,
+			height=8cm,
+			axis lines=middle,
+			xlabel={$U_{DS}$ [V]},
+			ylabel={$I_{DS}$ [mA]},
+			xmin=0, xmax=5,
+			ymin=0, ymax=1,
+			xtick={0,1,...,5},
+			ytick={0,0.1,...,1},
+			domain=0:5,
+			samples=200,
+			smooth,
+			thick,
+			grid=both,
+			legend pos=north east,
+			]
+			
+			% Durchgehende rote Linie für IDS
+			\addplot[red, thick, domain=0:5] {
+				x < 0.2 
+				? 1.25 * x^2
+				: (x < 1.0 
+				? 1*(2 - 1)*x - 0.5*x^2 
+				: 0.5)
+			};
+			\addlegendentry{$I_{DS}$ für $U_{GS} = 2\,\mathrm{V}$}
+			
+			% Vertikale gestrichelte Linie bei U_DS = 1V
+			\addplot[dashed, gray, domain=0:0.5] coordinates {(1,0) (1,0.5)};
+			\node[anchor=west, font=\small] at (axis cs:1.05,0.48) {$U_{DS,sat}$};
+			
+			% Bereichsbeschriftungen
+			% \node[anchor=west, font=\small] at (axis cs:0.05,0.05) {Sperrbereich};
+			\node[anchor=west, font=\small] at (axis cs:0.3,0.25) {Triodenbereich};
+			\node[anchor=west, font=\small] at (axis cs:2,0.55) {Sättigungsbereich};
+			
+			% Vertikale gestrichelte Linie bei U_TH = 0.2V
+			\addplot[dashed, gray, domain=0:0.15] coordinates {(0.2,0) (0.2,0.15)};
+			\node[anchor=north west, gray] at (axis cs:0.22,0.09) {$U_{TH}$};
+			
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

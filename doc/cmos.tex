@@ -1,0 +1,111 @@
+\documentclass[oneside]{scrarticle}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage[ngerman]{babel}
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow} % Wichtig: Fügen Sie dieses Paket in Ihrer Präambel hinzu!
+\usepackage{array} % Oft nützlich in Verbindung mit tabularx
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{tikz}
+
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+
+\newtheorem{satz}{Satz}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definiton}[section]
+\numberwithin{equation}{section}
+
+\makeatletter
+\renewcommand{\ALG@name}{Algorithmus}
+\makeatother
+\algrenewcommand\algorithmicrequire{\textbf{Eingabe:}}
+\algrenewcommand\algorithmicensure{\textbf{Ausgabe:}}
+
+\title{Metal-Oxide-Semiconductor Transistoren}
+\author{Stephan Epp\\\texttt{hjstephan86@gmail.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+Die U-I-Kennlinie eines nMOS-Transistors folgt in den verschiedenen Betriebsbereichen spezifischen mathematischen Formeln. Diese Formeln basieren auf physikalischen Modellen des Transistors und beschreiben den Drain-Source-Strom ($I_{DS}$) in Abhängigkeit von den angelegten Spannungen, hauptsächlich der Gate-Source-Spannung ($U_{GS}$) und der Drain-Source-Spannung ($U_{DS}$). Es gibt drei Hauptbetriebsbereiche für einen nMOS-Transistor: den Sperrbereich, den Triodenbereich und den Sättigungsbereich.
+
+\section{Sperrbereich}
+In diesem Bereich ist der Transistor ausgeschaltet und leitet praktisch keinen Strom.
+
+\begin{itemize}
+	\item \textbf{Bedingung:} $U_{GS} < U_{TH}$ (wobei $U_{TH}$ die Schwellenspannung ist).
+	\item \textbf{Formel:}
+	\begin{equation*}
+		I_{DS} \approx 0
+	\end{equation*}
+	\item \textbf{Erklärung:} Wenn die Gate-Source-Spannung $U_{GS}$ unter der Schwellenspannung $U_{TH}$ liegt, kann sich kein leitender Kanal zwischen Source und Drain bilden, und es fließt kein nennenswerter Strom, d.h., $I_{DS} \approx 0$. Idealisiert ist $I_{DS} = 0$, in der Realität gibt es einen sehr kleinen Leckstrom (Subthreshold-Strom), der oft vernachlässigt wird.
+\end{itemize}
+
+\section{Triodenbereich / Linearer Bereich}
+Dieser Bereich wird auch als ohmscher Bereich bezeichnet, da der Transistor hier wie ein spannungsgesteuerter Widerstand wirkt. Der Strom steigt hier nahezu linear mit $U_{DS}$ an (für kleine $U_{DS}$) und ist stark von $U_{GS}$ abhängig.
+
+\begin{itemize}
+	\item \textbf{Bedingung:} $U_{GS} > U_{TH}$ und $U_{DS} < (U_{GS} - U_{TH})$
+	\item \textbf{Formel (vereinfachtes Modell für lange Kanäle):}
+	\begin{equation*}
+		I_{DS} = \mu_n C_{ox} \frac{W}{L} \left( (U_{GS} - U_{TH})U_{DS} - \frac{1}{2}U_{DS}^2 \right)
+	\end{equation*}
+	\begin{itemize}
+		\item $\mu_n$: Elektronenbeweglichkeit im Kanal
+		\item $C_{ox}$: Oxidkapazität pro Flächeneinheit
+		\item $W$: Kanalbreite
+		\item $L$: Kanallänge
+		\item $U_{TH}$: Schwellenspannung
+	\end{itemize}
+	\item \textbf{Erklärung:} Wenn $U_{GS}$ über $U_{TH}$ liegt, bildet sich ein Kanal. Solange $U_{DS}$ nicht zu hoch ist, verhält sich der Kanal wie ein variabler Widerstand. Der Strom nimmt mit zunehmendem $U_{DS}$ zu und die Breite des Kanals verringert sich zum Drain hin leicht, was zu einer nicht-linearen Abhängigkeit führt, die durch den Term $U_{DS}^2$ beschrieben wird. Der nicht-lineare Anstieg vom gesperrten Zustand im Übergang bis in den leitenden Zustand bezieht sich auf den Übergang vom Sperrbereich in diesen Bereich und den anfänglich nicht-linearen Anstieg des Stroms, bevor er in die Sättigung geht.
+\end{itemize}
+
+\section{Sättigungsbereich}
+In diesem Bereich verhält sich der Transistor wie eine spannungsgesteuerte Stromquelle, da der Drain-Source-Strom weitgehend unabhängig von $U_{DS}$ ist.
+
+\begin{itemize}
+	\item \textbf{Bedingung:} $U_{GS} > U_{TH}$ und $U_{DS} \ge (U_{GS} - U_{TH})$
+	\item \textbf{Formel (vereinfachtes Modell für lange Kanäle):}
+	\begin{equation*}
+		I_{DS} = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (U_{GS} - U_{TH})^2 \left( 1 + \lambda U_{DS} \right)
+	\end{equation*}
+	\begin{itemize}
+		\item Der Term $(1 + \lambda U_{DS})$ berücksichtigt den \textbf{Kanallängenmodulationseffekt}, $\lambda$ ist der Kanallängenmodulationsparameter, der eine leichte Zunahme des Stroms mit $U_{DS}$ in der Sättigung beschreibt. Ohne diesen Effekt wäre der Strom konstant.
+	\end{itemize}
+	\item \textbf{Erklärung:} Sobald $U_{DS}$ einen bestimmten Wert erreicht ($U_{DS,sat} = U_{GS} - U_{TH}$), wird der Kanal am Drain-Ende "abgeschnürt" (pinch-off). Eine weitere Erhöhung von $U_{DS}$ führt nicht zu einer signifikanten Zunahme des Stroms, da der Stromfluss durch die Anzahl der Ladungsträger im Kanal und die Gate-Spannung begrenzt wird.
+\end{itemize}
+
+\section{U-I-Kennlinie für $U_{GS} = 2\,\mathrm{V}$}
+
+Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,\mathrm{mA/V^2} \) ergibt sich:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.85\textwidth]{tkiz/ui-kennlinie.pdf}
+	\caption{U-I-Kennlinie eines nMOS-Transistors mit $U_{GS} = 2\,\mathrm{V}$}
+	\label{fig:kennlinie}
+\end{figure}
+\begin{itemize}
+	\item \textbf{Sperrbereich} ($U_{GS} < U_{TH}$, näherungsweise $U_{DS} < 0.2\,\mathrm{V}$): \\
+	\[
+	I_{DS} \approx a \cdot U_{DS}^2 \quad \text{mit } a = 1.25\,\mathrm{mA/V^2}
+	\]
+	\item \textbf{Triodenbereich} ($0.2\,\mathrm{V} < U_{DS} < 1\,\mathrm{V}$): \\
+	\[
+	I_{DS} = k \left((U_{GS} - U_{TH}) U_{DS} - \frac{1}{2} U_{DS}^2\right)
+	\]
+	\item \textbf{Sättigungsbereich} ($U_{DS} \ge 1\,\mathrm{V}$): \\
+	\[
+	I_{DS} = \frac{1}{2} k (U_{GS} - U_{TH})^2 = 0{,}5\,\mathrm{mA}
+	\]
+\end{itemize}
+
+\section{CMOS}
+Die CMOS-Technologie ...
+\end{document}

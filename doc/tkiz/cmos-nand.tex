@@ -1,0 +1,100 @@
+%\documentclass{article}
+%\usepackage[pdftex,active,tightpage]{preview}
+%\setlength\PreviewBorder{2mm}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows, calc, positioning, decorations.pathreplacing, shapes}
+%\begin{document}
+%	\begin{preview}
+%		\begin{tikzpicture}[scale=0.5]
+%			
+%			% --------------------------------------------------
+%			% Eingangsleitungen (a und b)
+%			% --------------------------------------------------
+%			\draw (0,5) -- (2,5);  % Leitung von b
+%			\draw (0,8) -- (6,8);  % Leitung von a
+%			
+%			% --------------------------------------------------
+%			% Verbindung von a/b zu PMOS und NMOS-Gates
+%			% --------------------------------------------------
+%			\draw (2,5) -- (2,8);                         % nur Verbindung b nach oben
+%			\draw (2,5) -- (2,4.25) -- (5,4.25);           % Verbindung b zu NMOS unten
+%			\draw (2,5) -- (4.25,5) -- (4.25,1.25) -- (5,1.25);  % Verbindung b zu NMOS oben
+%			
+%			% Ausgangsleitung
+%			\draw (5,6) -- (10,6);
+%			\draw[fill=black] (7.5,6) circle (0.1);         % Punkt am Ausgang
+%			
+%			% --------------------------------------------------
+%			% NMOS Transistor unten (Gate b) - in Reihe
+%			% --------------------------------------------------
+%			\draw (5,0.25) -- (5,2.25);                         % Drain-Source Verbindung
+%			\draw[thick] (5.25,0.25) -- (5.25,2.25);            % Transistorkanal
+%			\draw (5.25,0.5) -- (5.5,0.5) -- (5.5,0);           % Verbindung zu GND
+%			\draw[latex-] (5.25,1.25) -- (6,1.25);              % Gate-Eingang (von Mitte nach rechts)
+%			
+%			% --------------------------------------------------
+%			% NMOS Transistor oben (Gate a) - in Reihe
+%			% --------------------------------------------------
+%			\draw (5,3.25) -- (5,5.25);                         % Drain-Source Verbindung
+%			\draw[thick] (5.25,3.25) -- (5.25,5.25);            % Transistorkanal
+%			\draw[latex-] (5.25,4.25) -- (6,4.25);              % Gate-Eingang
+%			\draw (5.25,5) -- (5.5,5) -- (5.5,6) -- (5,6);       % Verbindung zum Ausgang
+%			\draw (5.25,3.5) -- (5.5,3.5) -- (5.5,2) -- (5.25,2);% Verbindung zwischen den NMOS 
+%			
+%			% --------------------------------------------------
+%			% PMOS Transistor links (Gate b)
+%			% --------------------------------------------------
+%			\draw (3,7) -- (3,9);
+%			\draw[thick] (3.25,7) -- (3.25,9);
+%			\draw[-latex] (3.25,8) -- (4,8);                % Gate-Eingang (nach rechts)
+%			\draw[fill=white] (3.25,8) circle (0.1);        % Inversions-Bubble (PMOS)
+%			\draw (3.25,8.75) -- (3.5,8.75) -- 
+%			(3.5,10) -- (6,10);                             % Verbindung zu Udd
+%			\draw (3.25,7.25) -- (3.5,7.25) -- 
+%			(3.5,6) -- (5,6);                               % Verbindung zum Ausgang
+%			\draw (0.5,8) -- (3.25,8);                       % Direkte Verbindung zu a
+%			
+%			% --------------------------------------------------
+%			% PMOS Transistor rechts (Gate a)
+%			% --------------------------------------------------
+%			\draw (7,7) -- (7,9);
+%			\draw[thick] (7.25,7) -- (7.25,9);
+%			\draw[-latex] (7.25,8) -- (8,8);                % Gate-Eingang
+%			\draw[fill=white] (7.25,8) circle (0.1);        % Inversions-Bubble (PMOS)
+%			\draw (7.25,8.75) -- (7.5,8.75) -- 
+%			(7.5,10) -- (6,10);                             % Verbindung zu Udd
+%			\draw (7.25,7.25) -- (7.5,7.25) -- 
+%			(7.5,6) -- (7,6);                               % Verbindung zum Ausgang
+%			
+%			% --------------------------------------------------
+%			% Versorgung: GND unten
+%			% --------------------------------------------------
+%			\draw (5.5,-0.5) -- (5.5,0);
+%			\draw (4.5,-0.5) -- (6.5,-0.5);
+%			\draw (4.7,-0.7) -- (6.3,-0.7);
+%			\draw (4.9,-0.9) -- (6.1,-0.9);
+%			\node at (7.5,-0.5) {GND};
+%			
+%			% --------------------------------------------------
+%			% Versorgung: Udd oben
+%			% --------------------------------------------------
+%			\draw (5.5,10) -- (5.5,10.5);
+%			\node at (6.25,10.5) {$U_{dd}$};
+%			
+%			% --------------------------------------------------
+%			% Beschriftung der Ein- und Ausgänge
+%			% --------------------------------------------------
+%			\node at (-0.5,8) {$a$};
+%			\node at (-0.5,5) {$b$};
+%			\node at (9,6.5) {$\overline{a \land b}$};
+%			
+%			% --------------------------------------------------
+%			% Markierungen der Eingänge
+%			% --------------------------------------------------
+%			\draw[fill=white] (0,5) circle (0.1);
+%			\draw[fill=white] (0,8) circle (0.1);
+%			\draw[fill=black] (2,8) circle (0.1);
+%			
+%		\end{tikzpicture}
+%	\end{preview}
+%\end{document}
