@@ -87,9 +87,9 @@ In diesem Bereich verhält sich der Transistor wie eine spannungsgesteuerte Stro
 Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,\mathrm{mA/V^2} \) ergibt sich:
 \begin{figure}[h]
 	\centering
+	\label{fig:kennlinie}
 	\includegraphics[width=0.85\textwidth]{tkiz/ui-kennlinie.pdf}
 	\caption{U-I-Kennlinie eines nMOS-Transistors mit $U_{GS} = 2\,\mathrm{V}$}
-	\label{fig:kennlinie}
 \end{figure}
 \begin{itemize}
 	\item \textbf{Sperrbereich} ($U_{GS} < U_{TH}$, näherungsweise $U_{DS} < 0.2\,\mathrm{V}$): \\
@@ -106,6 +106,21 @@ Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,
 	\]
 \end{itemize}
 
-\section{CMOS}
-Die CMOS-Technologie ...
+\section{Complementary Metal-Oxide-Semiconductor (CMOS)}
+Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreise sind elektronische Schaltkreise, in denen der pMOS- und der nMOS-Transistor komplementär zueinander verbunden werden.
+\begin{figure}[h]
+	\centering
+	\label{fig:cmos-not}
+	\includegraphics[scale=2.0]{tkiz/cmos-not.pdf}
+	\caption{CMOS-Schaltung}
+\end{figure}
+Abbildung \ref*{fig:cmos-not} zeigt eine CMOS-Schaltung mit der Betriebsspannung $U$, der Eingangsspannung $A$ für die Transistoren $P_1$ und $N_1$ und der Ausgangsspannung $Y$. Dabei ist $P_1$ der pMOS-Transistor und $N_1$ der nMOS-Transistor.
+
+Beim nMOS-Transistor $N_1$ zeigt der Pfeil auf den Transistor. Dies zeigt seine physikalische Wirkungsweise. Ist die Eingangsspannung $A$ ausreichend groß, dann liegt am Gate eine positive Spannung an. Das bewirkt wie beim Kondensator einen Feldeffekt zwischen den beiden Kondensatorplatten, der die Minoritäten (Elektronen) des nMOS-Transistors unter die Oberfläche der gegenüberliegenden Kondensatorplatte zieht. Erst durch diesen Feldeffekt tragen die Minoritätsladungsträger in ihrer Unterzahl im p-Substrat zum Stromfluss bei. Ist die Eingangspannung nämlich nicht ausreichend hoch, sperrt der nMOS-Transistor. Daher wird der nMOS-Transistor auch nMOS-Feldeffekttransistor (nMOSFET) genannt.
+
+Beim pMOS-Transistor $P_1$ zeigt der Pfeil weg von der unteren Kondensatorplatte. Das liegt daran, dass die Elektronen im pMOS-Transistor nicht Minoritätsladungsträger sondern Majoritätsladungsträger sind. Das heißt, der pMOS-Transistor leitet sogar schon bei einer Eingangsspannung von $A = 0\mathrm{V}$. Der Feldeffekt beim pMOS-Transistor führt dazu, dass bei ausreichender Eingangsspannung $A$ am Gate die Minoritätsladungsträger im n-Substrat unter die Kondensatorplatte gezogen werden und der pMOS-Transistor sperrt. Daher wird der pMOS-Transistor auch pMOS-Feldeffekttransistor (pMOSFET) genannt.
+
+Beide Transistoren $P_1$ und $N_1$ in Reihe geschaltet haben somit ein physikalisch komplementäres Sperr- und Leitverhalten zueinander. Dieses komplementäre Sperr- und Leitverhalten gibt diesem Schaltkreis den Namen Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreis.
+
+Betrachtet man das logische Schaltverhalten der CMOS Schaltung in Abhängigkeit der Betriebsspannung $U$, der Eingangsspannung $A$ und der Ausgangsspannung $Y$, wird klar, dass mit dieser Schaltung ein Inverter betrieben wird. Ist $A = 0$, leitet $P_1$ und $N_1$ sperrt. Das heißt, das Bezugspotenzial für $Y$ ist $U$ und damit ist $Y = 1$ (Pull-Up-Bezugspotenzial). Ist $A = 1$, sperrt $P_1$ und $N_1$ leitet. Das heißt, das Bezugspotenzial für $Y$ ist die Masse und damit ist $Y = 0$ (Pull-Down-Bezugspotenzial).
 \end{document}
