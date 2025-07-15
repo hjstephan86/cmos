@@ -1,4 +1,4 @@
-\documentclass[oneside]{scrarticle}
+\documentclass{scrarticle}
 \usepackage[a4paper, total={6in, 10in}]{geometry}
 \usepackage[ngerman]{babel}
 
@@ -107,6 +107,7 @@ Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,
 \end{itemize}
 
 \section{Complementary Metal-Oxide-Semiconductor (CMOS)}
+\label{sec:cmos}
 Bevor der CMOS Schaltkreis betrachtet wird, wird das Schaltsymbol des pMOS-Transistors und das Schaltsymbol des nMOS-Transistors in Abbildung \ref{fig:pmos-nmos} gezeigt.
 \begin{figure}[ht]
 	\centering
@@ -127,7 +128,7 @@ Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreise sind Schaltkreise, i
 \begin{figure}[h]
 	\centering
 	\label{fig:cmos-not}
-	\includegraphics[scale=2.0]{tkiz/cmos-not.pdf}
+	\includegraphics[scale=1.7]{tkiz/cmos-not.pdf}
 	\caption{CMOS-Schaltung}
 \end{figure}
 Abbildung \ref*{fig:cmos-not} zeigt eine CMOS-Schaltung mit der Betriebsspannung $U$, der Eingangsspannung $A$ für die Transistoren $P_1$ und $N_1$ und der Ausgangsspannung $Y$. Dabei ist $P_1$ der pMOS-Transistor und $N_1$ der nMOS-Transistor.
@@ -139,4 +140,41 @@ Beim pMOS-Transistor $P_1$ zeigt der Pfeil weg von der unteren Kondensatorplatte
 Beide Transistoren $P_1$ und $N_1$ in Reihe geschaltet haben somit ein physikalisch komplementäres Sperr- und Leitverhalten zueinander. Dieses komplementäre Sperr- und Leitverhalten gibt diesem Schaltkreis den Namen Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreis.
 
 Betrachtet man das logische Schaltverhalten der CMOS Schaltung in Abhängigkeit der Betriebsspannung $U$, der Eingangsspannung $A$ und der Ausgangsspannung $Y$, wird klar, dass mit dieser Schaltung ein Inverter betrieben wird. Ist $A = 0$, leitet $P_1$ und $N_1$ sperrt. Das heißt, das Bezugspotenzial für $Y$ ist $U$ und damit ist $Y = 1$ (Pull-Up-Bezugspotenzial). Ist $A = 1$, sperrt $P_1$ und $N_1$ leitet. Das heißt, das Bezugspotenzial für $Y$ ist die Masse und damit ist $Y = 0$ (Pull-Down-Bezugspotenzial).
+
+\section{Logische Gatter: NND und NOR}
+Ein logisches Gatter (oft auch einfach Gatter oder englisch (logic) gate genannt) ist ein grundlegender Baustein in der digitalen Elektronik, der eine bestimmte boolesche Funktion berechnet.
+\begin{figure}[ht]
+	\begin{minipage}[t]{0.5\textwidth}
+		\centering
+		\begin{tabular}{c|c||c}
+			\hline
+			$A$ & $B$ & $A \text{ NND } B$ \\
+			\hline\hline
+			0 & 0 & 1 \\
+			0 & 1 & 1 \\
+			1 & 0 & 1 \\
+			1 & 1 & 0 \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\hfill % Sorgt für horizontalen Abstand zwischen den minipages
+	\begin{minipage}[t]{0.5\textwidth}
+		\centering
+		\begin{tabular}{c|c||c}
+			\hline
+			$A$ & $B$ & $A \text{ NOR } B$ \\
+			\hline\hline
+			0 & 0 & 1 \\
+			0 & 1 & 0 \\
+			1 & 0 & 0 \\
+			1 & 1 & 0 \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\caption{Boolesche Funktion NND und NOR}
+\label{fig:nand-nor}
+\end{figure}
+In Kapitel \ref{sec:cmos} wird ein Inverter beschrieben, der die boolesche Funktion des NOT Gatters in Abhängigkeit des Eingangssignals $A$ berechnet. Andere Gatter, die durch CMOS-Schaltungen gebildet werden können, sind das NAND (kurz: NND) Gatter und das NOR Gatter. Das NND Gatter und das NOR Gatter bilden boolesche Funktionen in Abhängigkeit der Eingangssignale $A$ und $B$. Abbildung \ref{fig:nand-nor} zeigt die vollständig beschriebene boolesche Funktion beider Gatter. Dadurch, dass diese booleschen Funktionen durch MOSFETs gebildet werden können, sind ihre Funktionen als Hardwarelösung jeweils in einem Takt eines Prozessors berechenbar. In einem Takt würde ein Prozessor das Programm, das z.B. die boolesche NND Funktion als Softwarelösung berechnet, nicht berechnen können.
+
+
 \end{document}
