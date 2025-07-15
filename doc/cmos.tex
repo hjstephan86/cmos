@@ -34,7 +34,7 @@
 
 \begin{document}
 \maketitle
-Die U-I-Kennlinie eines nMOS-Transistors folgt in den verschiedenen Betriebsbereichen spezifischen mathematischen Formeln. Diese Formeln basieren auf physikalischen Modellen des Transistors und beschreiben den Drain-Source-Strom ($I_{DS}$) in Abhängigkeit von den angelegten Spannungen, hauptsächlich der Gate-Source-Spannung ($U_{GS}$) und der Drain-Source-Spannung ($U_{DS}$). Es gibt drei Hauptbetriebsbereiche für einen nMOS-Transistor: den Sperrbereich, den Triodenbereich und den Sättigungsbereich.
+Metal-Oxide-Semiconductor (MOS) Transistoren bilden die Grundlage für hochintegrierte Schaltungen. Die U-I-Kennlinie eines nMOS-Transistors folgt in den verschiedenen Betriebsbereichen spezifischen mathematischen Formeln. Diese Formeln basieren auf physikalischen Modellen des Transistors und beschreiben den Drain-Source-Strom $I_{DS}$ in Abhängigkeit von den angelegten Spannungen. Diese bestehen hauptsächlich aus der Gate-Source-Spannung $U_{GS}$ und der Drain-Source-Spannung $U_{DS}$. Es gibt drei Hauptbetriebsbereiche für einen nMOS-Transistor: den Sperrbereich, den Triodenbereich und den Sättigungsbereich.
 
 \section{Sperrbereich}
 In diesem Bereich ist der Transistor ausgeschaltet und leitet praktisch keinen Strom.
@@ -88,7 +88,7 @@ Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,
 \begin{figure}[h]
 	\centering
 	\label{fig:kennlinie}
-	\includegraphics[width=0.85\textwidth]{tkiz/ui-kennlinie.pdf}
+	\includegraphics[scale=1.0]{tkiz/ui-kennlinie.pdf}
 	\caption{U-I-Kennlinie eines nMOS-Transistors mit $U_{GS} = 2\,\mathrm{V}$}
 \end{figure}
 \begin{itemize}
@@ -107,7 +107,23 @@ Für \( U_{GS} = 2\,\mathrm{V} \), \( U_{TH} = 0.2\,\mathrm{V} \) und \( k = 1\,
 \end{itemize}
 
 \section{Complementary Metal-Oxide-Semiconductor (CMOS)}
-Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreise sind elektronische Schaltkreise, in denen der pMOS- und der nMOS-Transistor komplementär zueinander verbunden werden.
+Bevor der CMOS Schaltkreis betrachtet wird, wird das Schaltsymbol des pMOS-Transistors und das Schaltsymbol des nMOS-Transistors in Abbildung \ref{fig:pmos-nmos} gezeigt.
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=2.2]{tkiz/pmos.pdf}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=2.2]{tkiz/nmos.pdf}
+	\end{minipage}
+	\caption{Schaltsymbol des pMOS-Transistors $P_1$ und des nMOS-Transistors $N_1$}
+	\label{fig:pmos-nmos}
+\end{figure}
+
+Complementary Metal-Oxide-Semiconductor (CMOS) Schaltkreise sind Schaltkreise, in denen der pMOS- und der nMOS-Transistor komplementär zueinander verbunden werden.
 \begin{figure}[h]
 	\centering
 	\label{fig:cmos-not}

@@ -1,0 +1,22 @@
+\documentclass[border=0pt]{standalone}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+\begin{document}
+	\begin{circuitikz}
+		\draw (0,0) node[pfetd, anchor=D, label=right:{\scriptsize$P_1$}](P){};
+		
+		% Gate-Anschluss (links)
+		\draw (P.G) -- ++(-0,0) coordinate (gate);
+		\draw (gate) node[circle,draw,fill=white,minimum size=2pt,inner sep=0pt] {};
+		\node at ($(gate) + (-0.2,0)$) {\scriptsize G};
+		
+		% Source-Anschluss (oben)
+		\draw (P.S) -- ++(0,0) coordinate (source);
+		\draw (source) node[circle,draw,fill=white,minimum size=2pt,inner sep=0pt] {};
+		\node at ($(source) + (0,0.2)$) {\scriptsize S};
+		
+		% Drain-Anschluss (unten)
+		\draw (P.D) -- ++(0,0) coordinate (drain);
+		\draw (drain) node[circle,draw,fill=white,minimum size=2pt,inner sep=0pt] {};
+		\node at ($(drain) + (0,-0.2)$) {\scriptsize D};
+	\end{circuitikz}	
+\end{document}
