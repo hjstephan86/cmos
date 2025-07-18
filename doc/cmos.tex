@@ -206,6 +206,31 @@ Earliest Deadline First (EDF) ist eine Vorgehensweise zur Scheduleberechnung, be
 \end{proof}
 Es ist zu beachten, dass es während der Ausführung von Tasks, die nach dem EDF$^+$ Schedulue ausgeführt werden, immer wieder zu Unterbrechungen kommen kann, wenn das Nutzen anderer Ressourcen nicht möglich ist. Das heißt, die Anzahl der Unterbrechungen sind vorher nicht bekannt und können dazu führen, dass einige Tasks aus der Menge aller Tasks \textit{nicht} bis zu ihrer Deadline ausgeführt werden können.
 
+Was kann dazu führen, dass eine Task während der Ausführung des Schedules blockiert? Tasks könnten einen kritischen Abschnitt betreten oder auf gemeinsam genutzten Speicher zugreifen. Wird die geometrisch verteilte Zufallsvariable $X$ betrachtet, die die Anzahl der Versuche bis zur ersten blockierten Task zählt und mit $p$ die Wahrscheinlichkeit, dass eine Task blockiert, dann ist der Erwartungswert $E(X)$ gegeben durch $E(X)= 1 / p$. Der konkrete Wert für $p$ ist so nicht einfach zu bestimmen. Ist z.B. $p = 0.1$, dann ist $E(X) = 10$, d.h., die ersten 10 Tasks blockieren nicht und erst die 11. Task blockiert.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{m{3.5cm}|m{3.5cm}|m{3.5cm}}
+		\hline
+		Wahrscheinlichkeit $p$ & Erwartungswert $1/p$ & Blockierte Tasks\\
+		\hline\hline
+		0.05 & 20.00 & 2.00 \\
+		0.10 & 10.00 & 4.00 \\
+		0.15 & 6.67 & 6.00 \\
+		0.20 & 5.00 & 8.00 \\
+		0.25 & 4.00 & 10.00 \\
+		0.30 & 3.33 & 12.00 \\
+		0.35 & 2.86 & 14.00 \\
+		0.40 & 2.50 & 16.00 \\
+		0.45 & 2.22 & 18.00 \\
+		0.50 & 2.00 & 20.00 \\
+		\hline
+	\end{tabular}
+	\caption{Erwartete Anzahl blockierter Tasks bei 40 Tasks}
+	\label{tab:geometric-expectation}
+\end{table}
+Tabelle \ref{tab:geometric-expectation} zeigt für jede Zeile in der rechten Spalte die erwartete Anzahl blockierter Tasks, wenn davon ausgegangen wird, dass 40 Tasks ausgeführt werden. Blockiert eine Task mit der Wahrscheinlichkeit $p = 0.05$, dann gibt es im Mittel 2 Tasks, die blockieren. Ist $n$ die Anzahl der Tasks, benötigt das Berechnen eines neuen Schedules nach EDF$^+$ mit Merge-Sort eine Laufzeit von $O(n \log(n))$. Da Merge-Sort nach dem optimalen Teile-und-Herrsche Prinzip die Tasks nach ihren Prioritäten sortiert, ist die Berechnung eines neuen Schedules nicht schneller möglich. 
+
+
 \section{Software Engineering}
 Software Engineering ist die Disziplin, bei der Ingenieure für das Softwareprodukt ihr Fachwissen so einbringen, dass alle Anforderungen an die Software unter möglichst allen Umstän-den erfüllt werden. Das heißt, zu jeder Zeit und unabhängig von ihrer Auslastung und Umgebung muss die Software alle Prozessanfragen aller Benutzer bearbeiten entsprechend der spezifizierten Anforderungen. Erst so wird den Benutzern mit der Software ermöglicht, Aufgaben und Abläufe zu bearbeiten. Wichtige Anforderungen an die Software sind z.B. die Benutzerfreundlichkeit, Zuverlässigkeit und Robustheit. Zur Benutzerfreundlichkeit zählen zum Beispiel einfache und intuitive Bedienung der Software und die Effizienz.
 
@@ -222,8 +247,8 @@ Im Anschluss wird die Complementary Metal-Oxide-Semiconductor (CMOS)-Technologie
 
 Weiterhin werden logische Gatter wie das NAND (NND) und NOR Gatter thematisiert. Ihre booleschen Funktionen werden in Wahrheitstabellen dargestellt. Es wird erläutert, dass diese Gatter als Hardwarelösungen in Prozessoren implementiert werden können, was eine schnellere Verarbeitung in einem Prozessor-Slot ermöglicht, im Gegensatz zur Ausführung durch Softwareprogramme. Die Abwägung zwischen Hardware- und Softwarelösungen für komplexere Funktionen, insbesondere im Kontext von Microcontrollern und eingebetteten Systemen, wird diskutiert.
 
-Ein separater Abschnitt widmet sich den eingebetteten Systemen, die als Hardware-/Softwareeinheiten zur Echtzeitbearbeitung von Aufgaben mit harten Deadlines definiert werden. Das Scheduling von Tasks wird als essenzieller Bestandteil solcher Systeme hervorgehoben. Insbesondere wird das Earliest Deadline First (EDF)-Verfahren beschrieben und die Erweiterung EDF$^+$ vorgestellt, welche die Optimierung des Schedules unter Berücksichti-gung blockierender Tasks zum Ziel hat.
+Ein separater Abschnitt widmet sich den eingebetteten Systemen, die als Hardware-/Software Einheiten Aufgaben in Echtzeit mit harten Deadlines ausführen. Das Scheduling von Tasks wird als essenzieller Bestandteil solcher Systeme hervorgehoben. Insbesondere wird das Earliest Deadline First (EDF)-Verfahren beschrieben und die Erweiterung EDF$^+$ vorgestellt, welche unter Berücksichtigung blockierender Tasks EDF optimal erweitert.
 
-Abschließend wird der Bereich des Softwareengineering beleuchtet. Es wird betont, dass ein standardisierter, agiler Entwicklungsprozess erforderlich ist, um Qualitätsanforderungen wie Benutzerfreundlichkeit, Zuverlässigkeit, Robustheit, Analysierbarkeit, Erweiterbarkeit und Wartbarkeit zu erfüllen. Die Bedeutung von kurzen Release-Zyklen, regelmäßigen Stand-Ups und einer spontanen Meeting-Kultur im agilen Kontext wird unterstrichen. Des Weiteren wird die Relevanz des V-Modells für die Qualitätssicherung auf allen Ebenen, insbesondere durch automatisierte Tests (Unit-, Integrations- und Benutzertests), herausgestellt. Ein spezifischer Ansatz, bei dem Integrationstests durch zyklomatische Komplexität getrieben werden, wird beschrieben, um Refactoring-Bedarfe zu identifizieren und die Code-Qualität kontinuierlich zu verbessern.
+Abschließend wird der Bereich des Software Engineerings beleuchtet. Es wird betont, dass ein standardisierter, agiler Entwicklungsprozess erforderlich ist, um Qualitätsanforderungen wie Benutzerfreundlichkeit, Zuverlässigkeit, Robustheit, Analysierbarkeit, Erweiterbarkeit und Wartbarkeit zu erfüllen. Die Bedeutung von kurzen Release-Zyklen, regelmäßigen Stand-Ups und einer spontanen Meeting-Kultur im agilen Kontext wird unterstrichen. Des Weiteren wird die Relevanz des V-Modells für die Qualitätssicherung auf allen Ebenen, insbesondere durch automatisierte Tests (Unit-, Integrations- und Benutzertests), herausgestellt. Ein spezifischer Ansatz, bei dem Integrationstests durch zyklomatische Komplexität getrieben werden, wird beschrieben, um Refactoring-Bedarfe zu identifizieren und die Code-Qualität kontinuierlich zu verbessern.
 
 \end{document}
